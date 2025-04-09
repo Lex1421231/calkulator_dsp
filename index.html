@@ -10,18 +10,26 @@
     <h1>Калькулятор стоимости мебели из ДСП</h1>
     
     <div class="calculator">
-        <p>Стоимость 1 м² ДСП: <strong>2100 руб.</strong></p>
-        <p>Стоимость 1 комплекта фурнитуры: <strong>1715 руб.</strong></p>
-        
-        <div class="additional-expenses">
-            <label>Дополнительные расходы (руб): 
-                <input type="number" id="additionalCosts" value="0" min="0">
-            </label>
+        <div class="price-settings">
+            <div>
+                <label>Стоимость 1 м² ДСП (руб): 
+                    <input type="number" id="dspPrice" value="2100" min="0">
+                </label>
+            </div>
+            <div>
+                <label>Стоимость фурнитуры (руб): 
+                    <input type="number" id="furniturePrice" value="1715" min="0">
+                </label>
+            </div>
+            <div class="additional-expenses">
+                <label>Дополнительные расходы (руб): 
+                    <input type="number" id="additionalCosts" value="0" min="0">
+                </label>
+            </div>
         </div>
 
         <h3>Введите размеры деталей (в мм):</h3>
         <div class="details-container" id="detailsContainer">
-            <!-- Первая деталь будет видимой, остальные добавятся через JS -->
             <div class="detail-item">
                 <h4>Деталь 1</h4>
                 <div>
@@ -34,8 +42,10 @@
             </div>
         </div>
         
-        <button id="addDetailBtn">+ Добавить деталь</button>
-        <button onclick="calculate()">Рассчитать стоимость</button>
+        <div class="buttons">
+            <button id="addDetailBtn">+ Добавить деталь</button>
+            <button id="calculateBtn">Рассчитать стоимость</button>
+        </div>
         
         <div class="results" id="results" style="display: none;">
             <h3>Результаты расчета:</h3>
