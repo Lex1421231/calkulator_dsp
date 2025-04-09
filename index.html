@@ -21,9 +21,20 @@
 
         <h3>Введите размеры деталей (в мм):</h3>
         <div class="details-container" id="detailsContainer">
-            <!-- Детали будут добавлены через JS -->
+            <!-- Первая деталь будет видимой, остальные добавятся через JS -->
+            <div class="detail-item">
+                <h4>Деталь 1</h4>
+                <div>
+                    <label>Длина: <input type="number" id="length1" min="0" step="1" value="0"></label> мм
+                </div>
+                <div>
+                    <label>Ширина: <input type="number" id="width1" min="0" step="1" value="0"></label> мм
+                </div>
+                <div class="detail-area">Площадь: <span id="area1">0</span> м²</div>
+            </div>
         </div>
         
+        <button id="addDetailBtn">+ Добавить деталь</button>
         <button onclick="calculate()">Рассчитать стоимость</button>
         
         <div class="results" id="results" style="display: none;">
