@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости мебели из ДСП</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Калькулятор стоимости мебели из ДСП</h1>
+    
+    <div class="calculator">
+        <p>Стоимость 1 м² ДСП: <strong>2100 руб.</strong></p>
+        <p>Стоимость 1 комплекта фурнитуры: <strong>1715 руб.</strong></p>
+        
+        <div class="additional-expenses">
+            <label>Дополнительные расходы (руб): 
+                <input type="number" id="additionalCosts" value="0" min="0">
+            </label>
+        </div>
+
+        <h3>Введите размеры деталей (в мм):</h3>
+        <div class="details-container" id="detailsContainer">
+            <!-- Детали будут добавлены через JS -->
+        </div>
+        
+        <button onclick="calculate()">Рассчитать стоимость</button>
+        
+        <div class="results" id="results" style="display: none;">
+            <h3>Результаты расчета:</h3>
+            <div id="detailResults"></div>
+            <div class="total">Общая площадь ДСП: <span id="totalArea">0</span> м²</div>
+            <div class="total">Стоимость ДСП: <span id="totalDspCost">0</span> руб.</div>
+            <div class="total">Стоимость фурнитуры: <span id="totalFurnitureCost">0</span> руб.</div>
+            <div class="total">Дополнительные расходы: <span id="additionalCostsDisplay">0</span> руб.</div>
+            <div class="total">Итого: <span id="totalCost">0</span> руб.</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
