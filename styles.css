@@ -29,8 +29,8 @@ h1 {
 }
 
 .details-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -59,13 +59,21 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 0;
+    margin: 10px 5px 10px 0;
     cursor: pointer;
     border-radius: 4px;
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+#addDetailBtn {
+    background-color: #2196F3;
+}
+
+#addDetailBtn:hover {
+    background-color: #0b7dda;
 }
 
 .results {
