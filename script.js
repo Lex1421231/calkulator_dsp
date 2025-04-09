@@ -1,6 +1,4 @@
-const DSP_PRICE_PER_M2 = 2100;
-const FURNITURE_SET_PRICE = 1715;
-let detailCount = 1; // Начинаем с 1, так как первая деталь уже есть
+let detailCount = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Обработчики для первой детали
@@ -9,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Кнопка добавления детали
     document.getElementById('addDetailBtn').addEventListener('click', addDetail);
+    
+    // Кнопка расчета
+    document.getElementById('calculateBtn').addEventListener('click', calculate);
 });
 
 function addDetail() {
@@ -44,6 +45,11 @@ function updateArea(id) {
 }
 
 function calculate() {
+    // Получаем текущие цены
+    const dspPrice = parseFloat(document.getElementById('dspPrice').value) || 0;
+    const furniturePrice = parseFloat(document.getElementById('furniturePrice').value) || 0;
+    const additionalCosts = parseFloat(document.getElementById('additionalCosts').value) || 0;
+    
     let totalArea = 0;
     let detailsHtml = '';
     
@@ -53,29 +59,22 @@ function calculate() {
         const width = parseFloat(document.getElementById(`width${i}`).value || 0);
         
         if (length > 0 && width > 0) {
-            // Переводим мм в метры и вычисляем площадь
             const area = (length / 1000) * (width / 1000);
             totalArea += area;
             
-            detailsHtml += `
-                <p>Деталь ${i}: ${length} × ${width} мм = ${area.toFixed(3)} м²</p>
-            `;
+            detailsHtml += `<p>Деталь ${i}: ${length} × ${width} мм = ${area.toFixed(3)} м²</p>`;
         }
     }
     
-    // Получаем дополнительные расходы
-    const additionalCosts = parseFloat(document.getElementById('additionalCosts').value) || 0;
-    
     // Рассчитываем стоимости
-    const dspCost = totalArea * DSP_PRICE_PER_M2;
-    const furnitureCost = FURNITURE_SET_PRICE;
-    const totalCost = dspCost + furnitureCost + additionalCosts;
+    const dspCost = totalArea * dspPrice;
+    const totalCost = dspCost + furniturePrice + additionalCosts;
     
     // Отображаем результаты
     document.getElementById('detailResults').innerHTML = detailsHtml;
     document.getElementById('totalArea').textContent = totalArea.toFixed(3);
     document.getElementById('totalDspCost').textContent = Math.round(dspCost);
-    document.getElementById('totalFurnitureCost').textContent = Math.round(furnitureCost);
+    document.getElementById('totalFurnitureCost').textContent = Math.round(furniturePrice);
     document.getElementById('additionalCostsDisplay').textContent = Math.round(additionalCosts);
     document.getElementById('totalCost').textContent = Math.round(totalCost);
     
