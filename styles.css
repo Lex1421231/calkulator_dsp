@@ -17,15 +17,24 @@ h1 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.additional-expenses {
-    margin: 15px 0;
-    padding: 10px;
-    background-color: #f0f0f0;
+.price-settings {
+    background-color: #e6f3ff;
+    padding: 15px;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-.additional-expenses input {
+.price-settings div {
+    margin-bottom: 10px;
+}
+
+.price-settings input {
     width: 100px;
+}
+
+.additional-expenses {
+    margin-top: 15px;   
+    border-radius: 5px;
 }
 
 .details-container {
@@ -50,22 +59,21 @@ input {
     border-radius: 4px;
 }
 
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
 button {
-    background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin: 10px 5px 10px 0;
     cursor: pointer;
     border-radius: 4px;
-}
-
-button:hover {
-    background-color: #45a049;
 }
 
 #addDetailBtn {
@@ -74,6 +82,14 @@ button:hover {
 
 #addDetailBtn:hover {
     background-color: #0b7dda;
+}
+
+#calculateBtn {
+    background-color: #4CAF50;
+}
+
+#calculateBtn:hover {
+    background-color: #45a049;
 }
 
 .results {
