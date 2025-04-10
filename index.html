@@ -7,54 +7,61 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Калькулятор стоимости мебели из ДСП</h1>
-    
-    <div class="calculator">
-        <div class="price-settings">
-            <div>
-                <label>Стоимость 1 м² ДСП (руб): 
-                    <input type="number" id="dspPrice" value="2100" min="0">
-                </label>
-            </div>
-            <div>
-                <label>Стоимость фурнитуры (руб): 
-                    <input type="number" id="furniturePrice" value="1715" min="0">
-                </label>
-            </div>
-            <div class="additional-expenses">
-                <label>Дополнительные расходы (руб): 
+    <div class="container">
+        <h1>Калькулятор стоимости мебели из ДСП</h1>
+        
+        <div class="calculator">
+            <div class="price-settings">
+                <div>
+                    <label for="dspPrice">Стоимость 1 м² ДСП (руб):</label>
+                    <input type="number" id="dspPrice" value="2100" min="0" required>
+                </div>
+                <div>
+                    <label for="furniturePrice">Стоимость фурнитуры (руб):</label>
+                    <input type="number" id="furniturePrice" value="1715" min="0" required>
+                </div>
+                <div class="additional-expenses">
+                    <label for="additionalCosts">Дополнительные расходы (руб):</label>
                     <input type="number" id="additionalCosts" value="0" min="0">
-                </label>
+                </div>
             </div>
-        </div>
 
-        <h3>Введите размеры деталей (в мм):</h3>
-        <div class="details-container" id="detailsContainer">
-            <div class="detail-item">
-                <h4>Деталь 1</h4>
-                <div>
-                    <label>Длина: <input type="number" id="length1" min="0" step="1" value="0"></label> мм
+            <h3>Введите размеры деталей (в мм):</h3>
+            <div class="details-container" id="detailsContainer">
+                <div class="detail-item">
+                    <h4>Деталь 1</h4>
+                    <div>
+                        <label>Длина: <input type="number" id="length1" min="0" step="1" value="0"></label> мм
+                    </div>
+                    <div>
+                        <label>Ширина: <input type="number" id="width1" min="0" step="1" value="0"></label> мм
+                    </div>
+                    <div>
+                        <label>Количество: 
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" id="quantity1" min="1" value="1" class="quantity-input">
+                            <button class="quantity-btn plus">+</button>
+                        </label>
+                    </div>
+                    <div class="detail-area">Площадь: <span id="area1">0</span> м²</div>
+                    <div class="detail-cost">Стоимость: <span id="cost1">0</span> руб.</div>
                 </div>
-                <div>
-                    <label>Ширина: <input type="number" id="width1" min="0" step="1" value="0"></label> мм
-                </div>
-                <div class="detail-area">Площадь: <span id="area1">0</span> м²</div>
             </div>
-        </div>
-        
-        <div class="buttons">
-            <button id="addDetailBtn">+ Добавить деталь</button>
-            <button id="calculateBtn">Рассчитать стоимость</button>
-        </div>
-        
-        <div class="results" id="results" style="display: none;">
-            <h3>Результаты расчета:</h3>
-            <div id="detailResults"></div>
-            <div class="total">Общая площадь ДСП: <span id="totalArea">0</span> м²</div>
-            <div class="total">Стоимость ДСП: <span id="totalDspCost">0</span> руб.</div>
-            <div class="total">Стоимость фурнитуры: <span id="totalFurnitureCost">0</span> руб.</div>
-            <div class="total">Дополнительные расходы: <span id="additionalCostsDisplay">0</span> руб.</div>
-            <div class="total">Итого: <span id="totalCost">0</span> руб.</div>
+            
+            <div class="buttons">
+                <button id="addDetailBtn">+ Добавить деталь</button>
+                <button id="calculateBtn">Рассчитать стоимость</button>
+            </div>
+            
+            <div class="results" id="results">
+                <h3>Результаты расчета:</h3>
+                <div id="detailResults"></div>
+                <div class="total">Общая площадь ДСП: <span id="totalArea">0</span> м²</div>
+                <div class="total">Стоимость ДСП: <span id="totalDspCost">0</span> руб.</div>
+                <div class="total">Стоимость фурнитуры: <span id="totalFurnitureCost">0</span> руб.</div>
+                <div class="total">Дополнительные расходы: <span id="additionalCostsDisplay">0</span> руб.</div>
+                <div class="total final-cost">Итого: <span id="totalCost">0</span> руб.</div>
+            </div>
         </div>
     </div>
 
