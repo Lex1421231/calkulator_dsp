@@ -155,6 +155,25 @@ h1 {
     vertical-align: middle;
 }
 
+.detail-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    max-width: 25px;
+    max-height: 25px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 28px;
+    padding: 0;
+    vertical-align: middle;
+}
+
 .quantity-btn:hover {
     background-color: #2980b9;
 }
@@ -281,5 +300,3 @@ button {
         margin-left: 0;
     }
 }
-
-
