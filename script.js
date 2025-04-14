@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const calculator = {
         detailCount: 1,
@@ -31,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.value++;
                 this.updateArea(1);
             });
+
+            // Добавляем кнопку удаления для первой детали
+            document.querySelector('.detail-item .delete-btn').addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                this.deleteDetail(id);
+            });
         },
         
         watchDspPriceChange: function() {
@@ -49,7 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const detailItem = document.createElement('div');
             detailItem.className = 'detail-item';
             detailItem.innerHTML = `
-                <h4>Деталь ${this.detailCount}</h4>
+                <div class="detail-header">
+                    <h4>Деталь ${this.detailCount}</h4>
+                    <button class="delete-btn" data-id="${this.detailCount}">×</button>
+                </div>
                 <div>
                     <label>Длина: <input type="number" id="length${this.detailCount}" min="0" step="1" value="0"></label> мм
                 </div>
@@ -86,8 +97,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.updateArea(this.detailCount);
             });
             
+            // Обработчик удаления
+            detailItem.querySelector('.delete-btn').addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                this.deleteDetail(id);
+            });
+            
             // Прокрутка к новой детали
             detailItem.scrollIntoView({ behavior: 'smooth' });
+        },
+        
+        deleteDetail: function(id) {
+            const detailItem = document.querySelector(`.detail-item [data-id="${id}"]`)?.closest('.detail-item');
+            if (!detailItem) return;
+
+            detailItem.remove();
         },
         
         updateArea: function(id) {
@@ -95,12 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = parseFloat(document.getElementById(`width${id}`).value) || 0;
             const quantity = parseInt(document.getElementById(`quantity${id}`).value) || 1;
             
-            // Валидация
             if (length < 0) document.getElementById(`length${id}`).value = 0;
             if (width < 0) document.getElementById(`width${id}`).value = 0;
             if (quantity < 1) document.getElementById(`quantity${id}`).value = 1;
             
-            // Переводим мм в метры и вычисляем площадь
             const area = (length / 1000) * (width / 1000) * quantity;
             const cost = area * this.currentDspPrice;
             
@@ -118,8 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
             let hasValidDetails = false;
             
             for (let i = 1; i <= this.detailCount; i++) {
-                const length = parseFloat(document.getElementById(`length${i}`).value) || 0;
-                const width = parseFloat(document.getElementById(`width${i}`).value) || 0;
+                const lengthInput = document.getElementById(`length${i}`);
+                const widthInput = document.getElementById(`width${i}`);
+                
+                // Проверяем, существует ли элемент (на случай, если деталь удалена)
+                if (!lengthInput || !widthInput) continue;
+                
+                const length = parseFloat(lengthInput.value) || 0;
+                const width = parseFloat(widthInput.value) || 0;
                 const quantity = parseInt(document.getElementById(`quantity${i}`).value) || 1;
                 
                 if (length > 0 && width > 0) {
@@ -144,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const totalCost = totalDspCost + furniturePrice + additionalCosts;
             
-            // Отображаем результаты
             document.getElementById('detailResults').innerHTML = detailsHtml;
             document.getElementById('totalArea').textContent = totalArea.toFixed(3);
             document.getElementById('totalDspCost').textContent = Math.round(totalDspCost);
@@ -152,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('additionalCostsDisplay').textContent = Math.round(additionalCosts);
             document.getElementById('totalCost').textContent = Math.round(totalCost);
             
-            // Показываем и прокручиваем к результатам
             const results = document.getElementById('results');
             results.style.display = 'block';
             results.scrollIntoView({ behavior: 'smooth' });
@@ -161,3 +187,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     calculator.init();
 });
+
