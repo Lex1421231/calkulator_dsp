@@ -37,6 +37,16 @@ body {
     }
 }
 
+.logo{
+    width: 35px;
+}
+
+.text_promo{
+    text-align: start;
+    color: #ff7b00;
+    font-size: 20px;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
